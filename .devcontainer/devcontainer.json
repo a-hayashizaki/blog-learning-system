@@ -1,0 +1,23 @@
+{
+  "name": "Blog Learning System",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:22-bullseye",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "prisma.prisma",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "npm install && git config --global --unset gpg.ssh.program || true",
+  "forwardPorts": [5173],
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  },
+  "remoteUser": "node"
+}
