@@ -8,37 +8,51 @@ This is an AI-powered Blog Learning System designed to help users maintain high-
 
 ## Technology Stack
 
-- **Frontend**: React Router 7 with CSR
-- **Language**: TypeScript
+- **Framework**: Ruby on Rails 8.0
+- **Language**: Ruby
+- **Database**: SQLite3
 - **Styling**: Tailwind CSS
-- **Build Tool**: Vite
-- **Database**: SQLite with Prisma ORM (planned)
-- **AI API**: Gemini API (planned)
-- **External API**: note API for blog platform integration (planned)
-- **Environment**: Node.js 20
+- **Frontend**: Turbo + Stimulus (Hotwire)
+- **Caching**: Solid Cache
+- **Background Jobs**: Solid Queue
+- **WebSockets**: Solid Cable
+- **Asset Pipeline**: Propshaft + Importmap
 
 ## Development Commands
 
 ```bash
 # Install dependencies
-npm install
+bundle install
 
-# Development server with HMR
-npm run dev
+# Development server
+bin/rails server
+# or use Procfile.dev for full development setup
+bin/dev
 
-# Type checking and generation
-npm run typecheck
+# Run tests
+bin/rails test
+bin/rails test:system
 
-# Build for production
-npm run build
+# Database operations  
+bin/rails db:create
+bin/rails db:migrate
+bin/rails db:seed
+bin/rails db:reset
 
-# Start production server
-npm start
+# Generate new resources
+bin/rails generate controller ControllerName
+bin/rails generate model ModelName
+bin/rails generate migration MigrationName
 
-# Database operations (when Prisma is added)
-npx prisma generate
-npx prisma db push
-npx prisma studio
+# Code quality
+bundle exec rubocop
+bundle exec brakeman
+
+# Console
+bin/rails console
+
+# Run background jobs
+bin/rails solid_queue:start
 ```
 
 ## Core Architecture
@@ -102,20 +116,23 @@ Two-phase learning approach:
 ## Current File Structure
 
 ```
-/app/                  # React Router 7 routes and components
-  ├── routes/          # Route modules
-  ├── root.tsx         # Root layout component
-  ├── routes.ts        # Route configuration
-  └── app.css          # Global styles
-/public/               # Static assets
-react-router.config.ts # React Router configuration
-vite.config.ts         # Vite build configuration
-tsconfig.json          # TypeScript configuration
-
-# To be added:
-/lib/                  # Utilities and configurations
-/prisma/              # Database schema and migrations
-/types/               # TypeScript type definitions
+/app/                     # Rails MVC architecture
+  ├── controllers/        # Request handling and business logic
+  ├── models/            # Data models and Active Record classes
+  ├── views/             # ERB templates and layouts
+  ├── jobs/              # Background job classes
+  ├── mailers/           # Email handling
+  ├── helpers/           # View helper methods
+  ├── assets/            # CSS, JavaScript, images
+  └── javascript/        # Stimulus controllers and JS modules
+/config/                 # Application configuration
+  ├── environments/      # Environment-specific settings
+  ├── initializers/      # Initialization code
+  └── routes.rb          # URL routing configuration
+/db/                     # Database files and schemas
+/lib/                    # Custom libraries and extensions
+/test/                   # Test files (controllers, models, system tests)
+/public/                 # Static files served directly by web server
 ```
 
 ## Development Notes
@@ -130,9 +147,13 @@ tsconfig.json          # TypeScript configuration
 
 ## Technical Configuration
 
-- **React Router 7**: File-based routing with SSR enabled by default
-- **Path Aliases**: `~/*` maps to `./app/*` for cleaner imports
-- **Tailwind CSS**: Integrated via Vite plugin for styling
-- **TypeScript**: Strict mode enabled with ES2022 target
-- **Development Server**: Runs on `http://localhost:5173`
-- **Production Server**: Serves on port 3000 when using `npm start`
+- **Rails Version**: 8.0 with modern defaults enabled
+- **Database**: SQLite3 for development/test, configurable for production
+- **Asset Pipeline**: Propshaft for asset compilation, Importmap for JavaScript modules
+- **CSS Framework**: Tailwind CSS integrated via tailwindcss-rails gem
+- **Frontend Stack**: Turbo for SPA-like navigation, Stimulus for JavaScript sprinkles
+- **Background Processing**: Solid Queue for job processing
+- **Caching**: Solid Cache for Rails.cache backend
+- **WebSockets**: Solid Cable for Action Cable
+- **Development Server**: Runs on `http://localhost:3000` by default
+- **Code Quality**: RuboCop with Rails Omakase styling, Brakeman for security analysis
