@@ -145,6 +145,21 @@ Two-phase learning approach:
 - Prioritize data persistence for multi-year learning accumulation
 - Design for local deployment (personal use)
 
+## Code Standards
+
+### JavaScript Organization
+- **NEVER place JavaScript code directly in ERB files**
+- All JavaScript must be placed in `app/javascript/` directory
+- Use `javascript_import_module_tag` helper to include JavaScript modules in views
+- Follow Rails 8.0 Importmap conventions for module management
+
+#### JavaScript File Structure
+- **Common/shared JavaScript**: Place directly in `app/javascript/` (e.g., `error_handler.js`)
+- **View-specific JavaScript**: Mirror the ERB file hierarchy
+  - `app/views/articles/new.html.erb` → `app/javascript/articles/new.js`
+  - `app/views/articles/show.html.erb` → `app/javascript/articles/show.js`
+  - `app/views/users/profile.html.erb` → `app/javascript/users/profile.js`
+
 ## Technical Configuration
 
 - **Rails Version**: 8.0 with modern defaults enabled

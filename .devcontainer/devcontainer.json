@@ -5,6 +5,16 @@
   "dockerComposeFile": "compose.yaml",
   "service": "rails-app",
   "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "mounts": [
+    // SQLiteデータベースの永続化
+    "source=${localWorkspaceFolder}/data,target=/workspace/data,type=bind",
+    
+    // Claude Codeの設定ディレクトリを永続化
+    "source=${localWorkspaceFolder}/.claude,target=/home/vscode/.claude,type=bind",
+    
+    // 一般的な設定ディレクトリも永続化（必要に応じて）
+    "source=${localWorkspaceFolder}/.config,target=/home/vscode/.config,type=bind"
+  ],
 
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
@@ -32,5 +42,5 @@
 
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bin/setup --skip-server && git config --global --unset gpg.ssh.program || true"
+  "postCreateCommand": "bundle install && git config --global --unset gpg.ssh.program || true"
 }

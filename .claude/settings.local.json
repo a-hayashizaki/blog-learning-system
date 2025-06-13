@@ -1,7 +1,18 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(bin/rails generate model:*)",
+      "Bash(bin/rails:*)",
+      "Bash(bundle install)",
+      "Bash(pkill:*)",
+      "Bash(grep:*)",
+      "Bash(true)",
+      "Bash(rm:*)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)"
     ],
     "deny": []
   }

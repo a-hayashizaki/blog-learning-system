@@ -1,0 +1,72 @@
+<div class="max-w-6xl mx-auto px-4 py-8">
+  <div class="flex justify-between items-center mb-8">
+    <h1 class="text-3xl font-bold text-gray-900">ブログ学習システム</h1>
+    <%= link_to "新しい記事を作成", new_article_path, class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium" %>
+  </div>
+
+  <% if @articles.any? %>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">総記事数</h3>
+        <p class="text-3xl font-bold text-blue-600"><%= @articles.count %></p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">平均評価</h3>
+        <% avg_rating = @articles.joins(:feedbacks).average('feedbacks.rating') %>
+        <p class="text-3xl font-bold text-yellow-500">
+          <%= avg_rating ? avg_rating.round(1) : '未評価' %>
+          <% if avg_rating %>
+            <span class="text-lg">★</span>
+          <% end %>
+        </p>
+      </div>
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">今月の記事</h3>
+        <p class="text-3xl font-bold text-green-600">
+          <%= @articles.where('created_at >= ?', Date.current.beginning_of_month).count %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <% @articles.each do |article| %>
+      <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+        <div class="flex items-center justify-between mb-2">
+          <span class="px-2 py-1 text-xs rounded-full <%= article.theme == 'coaching' ? 'bg-green-100 text-green-800' : 'bg-purple-100 text-purple-800' %>">
+            <%= article.theme == 'coaching' ? 'コーチング' : 'セルフコンパッション' %>
+          </span>
+          <time class="text-sm text-gray-500"><%= article.created_at.strftime("%Y/%m/%d") %></time>
+        </div>
+        
+        <h2 class="text-xl font-semibold mb-3 text-gray-900">
+          <%= link_to article.title, article, class: "hover:text-blue-600" %>
+        </h2>
+        
+        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+          <%= truncate(article.original_memo, length: 100) %>
+        </p>
+        
+        <div class="flex items-center justify-between text-sm text-gray-500">
+          <div class="flex space-x-4">
+            <span>体験比率: <%= (article.experience_ratio * 100).to_i %>%</span>
+            <span>カジュアル度: <%= article.casualness_level %>/5</span>
+          </div>
+          <div class="flex space-x-2">
+            <%= link_to "編集", edit_article_path(article), class: "text-blue-600 hover:text-blue-800" %>
+            <%= link_to "削除", article, method: :delete, 
+                data: { confirm: "本当に削除しますか？" }, 
+                class: "text-red-600 hover:text-red-800" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @articles.empty? %>
+    <div class="text-center py-12">
+      <p class="text-gray-500 text-lg mb-4">まだ記事がありません</p>
+      <%= link_to "最初の記事を作成", new_article_path, class: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg" %>
+    </div>
+  <% end %>
+</div>
