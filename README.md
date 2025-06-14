@@ -26,11 +26,17 @@ rails server
 
 このプロジェクトでは複数のMCPサーバーを使用して、ブラウザ自動化やデザインツール連携機能を提供しています。
 
-### ローカル環境でのMCPサーバー起動
+**重要**: 
+- **Claude Code**: devcontainer（コンテナ内）で実行
+- **MCPサーバー**: ホストマシン上で起動
+- 接続には `host.docker.internal` を使用してコンテナからホストへアクセス
 
-#### 1. Playwright MCPサーバーのインストール
+### MCPサーバーの起動
+
+#### 1. Playwright MCPサーバーのインストール（ホストマシンで実行）
 
 ```bash
+# ホストマシンのターミナルで実行
 # グローバルインストール（推奨）
 npm install -g @mcp-suite/mcp-server-playwright
 
@@ -38,35 +44,37 @@ npm install -g @mcp-suite/mcp-server-playwright
 npx @mcp-suite/mcp-server-playwright --host 0.0.0.0 --port 9222
 ```
 
-#### 2. Figma Developer MCPサーバーのインストール
+#### 2. Figma Developer MCPサーバーのインストール（ホストマシンで実行）
 
 ```bash
+# ホストマシンのターミナルで実行
 # グローバルインストール
 npm install -g figma-developer-mcp@latest
 
-# 起動（別のポートで）
-figma-developer-mcp --port 9223
 ```
 
-#### 3. サーバーの起動
+#### 3. サーバーの起動（ホストマシンで実行）
 
 ```bash
+# ホストマシンのターミナルで実行
 # Playwright MCP（ブラウザ自動化）
 mcp-server-playwright --host 0.0.0.0 --port 9222
 
 # Figma Developer MCP（デザインツール連携）
-figma-developer-mcp --port 9223
+figma-developer-mcp -y --figma-api-key=${apikey} --port 9223
 
-# volta環境等でのコマンド実行
+# volta環境でのコマンド実行
 # （このプロジェクトではvoltaが使用されているため、上記コマンドが有効）
+# volta なしの場合の例： npm mcp-server-playwright --host 0.0.0.0 --port 9222
 ```
 
-### Claude Code での MCP 設定
+### Claude Code での MCP 設定（コンテナ内で実行）
 
 1. Claude Code で複数のMCPサーバーを追加：
 
 [公式の説明](https://docs.anthropic.com/ja/docs/claude-code/tutorials#mcp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B)
 ```bash
+# devcontainer（コンテナ内）のターミナルで実行
 # Playwright MCP（ブラウザ自動化）
 claude mcp add --transport sse playwright http://host.docker.internal:9222/sse -s project
 
@@ -75,7 +83,7 @@ claude mcp add --transport sse figma http://host.docker.internal:9223/sse -s pro
 ```
 
 
-2. またはマニュアル設定（`.mcp.json`）：
+2. またはマニュアル設定（コンテナ内の`.mcp.json`）：
 
 ```json
 {
@@ -95,12 +103,12 @@ claude mcp add --transport sse figma http://host.docker.internal:9223/sse -s pro
 ### MCP機能のテスト
 
 #### Playwright MCP
-1. Claude Desktop を開く
+1. Claude Code（コンテナ内）を開く
 2. 「Playwright MCP でグーグルを開いて」と入力
 3. ブラウザが自動で開かれることを確認
 
 #### Figma Developer MCP
-1. Claude Desktop を開く
+1. Claude Code（コンテナ内）を開く
 2. 「Figmaのデザインファイルを確認して」と入力
 3. Figmaとの連携機能が動作することを確認
 

@@ -1,6 +1,6 @@
 class Article < ApplicationRecord
   has_many :feedbacks, dependent: :destroy
-  
+
   validates :title, presence: true
   validates :content, presence: true
   validates :original_memo, presence: true

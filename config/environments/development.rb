@@ -71,5 +71,5 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   # Gemini AI configuration
-  config.gemini_api_key = ENV['GEMINI_API_KEY']
+  config.gemini_api_key = ENV["GEMINI_API_KEY"]
 end

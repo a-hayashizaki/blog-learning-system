@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @articles = Article.all.order(created_at: :desc)
@@ -12,12 +12,12 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
-    
+
     # 学習済み推奨パラメータを取得
     if Article.joins(:feedbacks).exists?
       analyzer = LearningAnalyzer.new
       recommendations = analyzer.generate_improved_prompt_parameters
-      
+
       @article.experience_ratio = recommendations[:recommended_experience_ratio]
       @article.casualness_level = recommendations[:recommended_casualness_level]
       @article.structure_type = recommendations[:recommended_structure_type]
@@ -26,15 +26,15 @@ class ArticlesController < ApplicationController
       # デフォルト値
       @article.experience_ratio = 0.5
       @article.casualness_level = 3
-      @article.structure_type = 'standard'
+      @article.structure_type = "standard"
     end
   end
 
   def create
     @article = Article.new(article_params)
-    
+
     if @article.save
-      redirect_to @article, notice: '記事が作成されました。'
+      redirect_to @article, notice: "記事が作成されました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -45,7 +45,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      redirect_to @article, notice: '記事が更新されました。'
+      redirect_to @article, notice: "記事が更新されました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -53,14 +53,14 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article.destroy
-    redirect_to articles_path, notice: '記事が削除されました。'
+    redirect_to articles_path, notice: "記事が削除されました。"
   end
 
   def generate
     begin
       generator = ArticleGenerator.new(generate_params)
       result = generator.generate
-      
+
       render json: {
         title: result[:title],
         content: result[:content]
