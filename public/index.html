@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1Day クリエイティブセミナー - はじめの一歩！</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans:wght@400;700&family=Inter:wght@400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Main Container - 375px exactly like Figma */
+        .sp {
+            width: 375px;
+            height: 6971px;
+            margin: 0 auto;
+            position: relative;
+            background-color: #FFFFFF;
+        }
+
+        /* Hero Background Rectangle 49 */
+        .hero-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 375px;
+            height: 700px;
+            background: linear-gradient(135deg, #34D4B8 0%, #2ED7D7 100%);
+        }
+
+        /* Hero Image Overlay */
+        .hero-image {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 375px;
+            height: 700px;
+            background-image: url('/images/problem-section-image.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            mix-blend-mode: overlay;
+        }
+
+        /* はじめの一歩! Badge */
+        .step-badge {
+            position: absolute;
+            left: 33px;
+            top: 509px;
+            width: 208px;
+            height: 55px;
+            background-color: #FFFFFF;
+            border-radius: 27px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 20px;
+            font-family: 'Noto Sans JP';
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 1em;
+            color: #000000;
+        }
+
+        /* 1Day Title Container */
+        .title-container {
+            position: absolute;
+            left: 20px;
+            top: 585px;
+            width: 335px;
+            height: 63px;
+            background-color: #0FABB5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-text {
+            font-family: 'Noto Sans JP';
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 1.2;
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+        /* Subtitle */
+        .subtitle {
+            position: absolute;
+            left: 20px;
+            top: 736px;
+            width: 335px;
+            height: 87px;
+            font-family: 'Inter';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.8;
+            text-align: center;
+            color: #000000;
+        }
+
+        /* Problem Section Background */
+        .problem-bg {
+            position: absolute;
+            left: 0;
+            top: 859px;
+            width: 375px;
+            height: 605px;
+            background-color: #E3FAFF;
+        }
+
+        /* Problem Image */
+        .problem-image {
+            position: absolute;
+            left: 20px;
+            top: 888px;
+            width: 335px;
+            height: 184px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .problem-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Problem List Container */
+        .problem-list {
+            position: absolute;
+            left: 21px;
+            top: 1072px;
+            width: 334px;
+            height: 359px;
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            padding: 33px 14px;
+        }
+
+        .problem-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .problem-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .problem-icon {
+            width: 17.1px;
+            height: 19px;
+            margin-top: 4.03px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .problem-circle {
+            position: absolute;
+            left: 0;
+            top: 4.03px;
+            width: 14.97px;
+            height: 14.97px;
+            background-color: #FFFFFF;
+            border: 0.74px solid #9B9B9B;
+            border-radius: 50%;
+        }
+
+        .problem-check {
+            position: absolute;
+            left: 1.55px;
+            top: 0;
+            width: 15.55px;
+            height: 12.67px;
+        }
+
+        .problem-check svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .problem-text {
+            width: 278px;
+            font-family: 'Inter';
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #333333;
+        }
+
+        /* Solution Banner */
+        .solution-banner {
+            position: absolute;
+            left: 0;
+            top: 1464px;
+            width: 375px;
+            height: 128px;
+            background-color: #0FABB5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .solution-text {
+            width: 204px;
+            height: 54px;
+            font-family: 'Noto Sans JP';
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.5;
+            text-align: center;
+            color: #FFFFFF;
+        }
+
+        /* Triangle Decoration */
+        .triangle {
+            position: absolute;
+            left: 152px;
+            top: 1438px;
+            width: 71px;
+            height: 49px;
+            background-color: #E3FAFF;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        /* Features Section */
+        .features-section {
+            position: absolute;
+            left: 1px;
+            top: 1592px;
+            width: 375px;
+            height: 1379px;
+            padding: 64px 20px;
+        }
+
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 48px;
+        }
+
+        .section-title {
+            font-family: 'Noto Sans';
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 1.36;
+            color: #333333;
+            text-align: center;
+        }
+
+        .title-underline {
+            width: 60px;
+            height: 4px;
+            background-color: #0FABB5;
+        }
+
+        .features-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            width: 336px;
+        }
+
+        .feature-card {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        .feature-image {
+            width: 300px;
+            height: 180px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .feature-title {
+            font-family: 'Noto Sans';
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.36;
+            color: #333333;
+            margin-bottom: 16px;
+        }
+
+        .feature-description {
+            font-family: 'Noto Sans';
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #333333;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            position: absolute;
+            left: 1px;
+            top: 3270px;
+            width: 375px;
+            padding: 64px 20px;
+        }
+
+        .courses-intro {
+            font-family: 'Noto Sans';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.36;
+            color: #000000;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .courses-grid {
+            width: 334px;
+            margin: 0 auto;
+        }
+
+        .course-card {
+            width: 334px;
+            border: 2px solid #0FABB5;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+
+        .course-header {
+            padding: 24px 21px;
+        }
+
+        .course-image {
+            width: 294px;
+            height: 217px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .course-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .course-title {
+            width: 270px;
+            font-family: 'Noto Sans';
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333333;
+            margin-bottom: 24px;
+        }
+
+        .course-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .course-detail-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .course-detail-label {
+            width: 48px;
+            height: 26px;
+            background-color: #0FABB5;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans';
+            font-weight: 500;
+            font-size: 16px;
+            color: #FFFFFF;
+        }
+
+        .course-detail-value {
+            font-family: 'Noto Sans';
+            font-weight: 400;
+            font-size: 14px;
+            color: #333333;
+        }
+
+        .course-detail-value.price {
+            font-size: 16px;
+        }
+
+        .course-description {
+            padding: 0 21px 24px;
+            font-family: 'Noto Sans';
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.8;
+            color: #333333;
+        }
+
+        /* Location Section */
+        .location-section {
+            position: absolute;
+            left: 0;
+            top: 4859px;
+            width: 375px;
+            padding: 64px 0;
+            text-align: center;
+        }
+
+        .location-image {
+            width: 375px;
+            height: 340px;
+            margin: 0 auto 28px;
+            overflow: hidden;
+        }
+
+        .location-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .location-info {
+            padding: 0 20px;
+        }
+
+        .location-name {
+            width: 334px;
+            font-family: 'Noto Sans';
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.36;
+            color: #333333;
+            margin: 0 auto 16px;
+        }
+
+        .location-address {
+            width: 335px;
+            font-family: 'Noto Sans';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.375;
+            color: #333333;
+            margin: 0 auto 16px;
+        }
+
+        .location-access {
+            width: 335px;
+            font-family: 'Noto Sans';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.36;
+            color: #333333;
+            margin: 0 auto;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            position: absolute;
+            left: 0;
+            top: 5604px;
+            width: 375px;
+            min-height: 982px;
+            background-color: #F5F5F5;
+            padding: 64px 0;
+            z-index: 10;
+        }
+
+        .faq-content {
+            width: 335px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faq-items {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .faq-item {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 0;
+        }
+
+        .faq-q-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #0FABB5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans JP';
+            font-weight: 700;
+            font-size: 20px;
+            color: #FFFFFF;
+        }
+
+        .faq-q-text {
+            width: 250px;
+            font-family: 'Noto Sans JP';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333333;
+            flex: 1;
+        }
+
+        .faq-toggle {
+            width: 16.97px;
+            height: 10.24px;
+            margin-left: auto;
+            background-color: #0FABB5;
+            clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+        }
+
+        .faq-divider {
+            width: 335px;
+            height: 1px;
+            background-color: #878787;
+            margin: 0;
+        }
+
+        .faq-answer {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .faq-a-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid #0FABB5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Noto Sans JP';
+            font-weight: 700;
+            font-size: 18px;
+            color: #0FABB5;
+            flex-shrink: 0;
+        }
+
+        .faq-a-text {
+            width: 250px;
+            font-family: 'Noto Sans JP';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #333333;
+        }
+
+        /* CTA Sections */
+        .cta-section {
+            width: 375px;
+            height: 236px;
+            background: linear-gradient(rgba(16, 38, 72, 0.1), rgba(16, 38, 72, 0.1)), url('/images/cta-background.png');
+            background-size: cover;
+            background-position: center;
+            padding: 47px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .cta-section.first {
+            position: absolute;
+            left: 0;
+            top: 2971px;
+        }
+
+        .cta-section.second {
+            position: absolute;
+            left: 0;
+            top: 6650px;
+            z-index: 5;
+        }
+
+        .cta-text {
+            font-family: 'Noto Sans';
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 1.7;
+            text-align: center;
+            color: #333333;
+        }
+
+        .cta-button {
+            width: 280px;
+            height: 64px;
+            background-color: #F13C68;
+            border-radius: 8px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'Noto Sans';
+            font-weight: 700;
+            font-size: 16px;
+            color: #FFFFFF;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background-color: #d63457;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            left: 0;
+            top: 6886px;
+            width: 375px;
+            height: 85px;
+            background-color: #0FABB5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .footer-text {
+            font-family: 'Noto Sans JP';
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 1.45;
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+        /* Floating Header */
+        .floating-header {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            width: 375px;
+            height: 64px;
+            background-color: #FFFFFF;
+            box-shadow: 0px 4px 4px rgba(163, 163, 163, 0.25);
+            z-index: 1000;
+        }
+
+        .header-logo {
+            position: absolute;
+            left: 20px;
+            top: 13px;
+            width: 140px;
+            height: 29px;
+        }
+
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .menu-toggle {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-lines {
+            width: 36px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-line {
+            width: 100%;
+            height: 3px;
+            background-color: #333333;
+        }
+
+        /* Body offset for fixed header */
+        .sp {
+            margin-top: 64px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Header -->
+    <div class="floating-header">
+        <div class="header-logo">
+            <img src="/images/logo.png" alt="DESIGN CAMPUS">
+        </div>
+        <div class="menu-toggle">
+            <div class="menu-lines">
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+                <div class="menu-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="sp">
+        <!-- Hero Background -->
+        <div class="hero-bg"></div>
+        <div class="hero-image"></div>
+
+        <!-- はじめの一歩! Badge -->
+        <div class="step-badge">はじめの一歩！</div>
+
+        <!-- Title Container -->
+        <div class="title-container">
+            <div class="title-text">1Day クリエイティブセミナー</div>
+        </div>
+
+        <!-- Subtitle -->
+        <div class="subtitle">
+            デザイナーやディレクターに興味がある<br>
+            皆さんの「こんな勉強したかった！」に<br>
+            お答えします！
+        </div>
+
+        <!-- Problem Section Background -->
+        <div class="problem-bg"></div>
+
+        <!-- Problem Image -->
+        <div class="problem-image">
+            <img src="/images/problem-section-image.png" alt="問題解決のイメージ">
+        </div>
+
+        <!-- Problem List -->
+        <div class="problem-list">
+            <div class="problem-item">
+                <div class="problem-icon">
+                    <div class="problem-circle"></div>
+                    <div class="problem-check">
+                        <svg viewBox="0 0 16 13" fill="none">
+                            <path d="M2 6.5L6 10.5L14 2.5" stroke="#0FABB5" stroke-width="2.7" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="problem-text">デザインやディレクションの勉強をしてみたいけど何からはじめて良いかわからない…</div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">
+                    <div class="problem-circle"></div>
+                    <div class="problem-check">
+                        <svg viewBox="0 0 16 13" fill="none">
+                            <path d="M2 6.5L6 10.5L14 2.5" stroke="#0FABB5" stroke-width="2.7" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="problem-text">ページを作成したけど成約率をあげるにはどうすればいいだろう…</div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">
+                    <div class="problem-circle"></div>
+                    <div class="problem-check">
+                        <svg viewBox="0 0 16 13" fill="none">
+                            <path d="M2 6.5L6 10.5L14 2.5" stroke="#0FABB5" stroke-width="2.7" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="problem-text">SEOとか聞くけど集客するための対策って具体的にはどういうことなんだろう？</div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">
+                    <div class="problem-circle"></div>
+                    <div class="problem-check">
+                        <svg viewBox="0 0 16 13" fill="none">
+                            <path d="M2 6.5L6 10.5L14 2.5" stroke="#0FABB5" stroke-width="2.7" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="problem-text">デザインを外注依頼してみたいけど、失敗しないコツってなんだろう…？</div>
+            </div>
+            <div class="problem-item">
+                <div class="problem-icon">
+                    <div class="problem-circle"></div>
+                    <div class="problem-check">
+                        <svg viewBox="0 0 16 13" fill="none">
+                            <path d="M2 6.5L6 10.5L14 2.5" stroke="#0FABB5" stroke-width="2.7" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="problem-text">デザイナーやディレクターの仕事をちょっとだけ体験してみたい！</div>
+            </div>
+        </div>
+
+        <!-- Triangle Decoration -->
+        <div class="triangle"></div>
+
+        <!-- Solution Banner -->
+        <div class="solution-banner">
+            <div class="solution-text">1Dayセミナーでそんなお悩みを解決！</div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <div class="section-header">
+                <div class="section-title">本講座の特徴</div>
+                <div class="title-underline"></div>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="/images/feature-1.png" alt="気軽に学べる講座">
+                    </div>
+                    <div class="feature-title">気になる講座を1日で気軽に学べる</div>
+                    <div class="feature-description">デザイナー・ディレクターとして身につけておきたいスキルを「試しに少し触ってみたい！」という方々が気軽に参加できる2時間講座になってます！</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="/images/feature-2.png" alt="実践経験豊富な講師陣">
+                    </div>
+                    <div class="feature-title">実践経験豊富な講師陣</div>
+                    <div class="feature-description">それぞれのセミナー毎に実戦経験が豊富な講師陣が直接教えてくれます！また、実践的な使い方も併せて教えてもらえるので有意義な時間を過ごすことができます！</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-image">
+                        <img src="/images/feature-3.png" alt="参加者同士の交流">
+                    </div>
+                    <div class="feature-title">参加者同士で交流もできる</div>
+                    <div class="feature-description">それぞれのセミナーテーマに興味のある参加者が集まるため、思いが同じ方々との交流をすることができます！コワーキングスペースで実施するので互いに雑談がてら悩み相談などをして頂ける環境です！</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- First CTA Section -->
+        <div class="cta-section first">
+            <div class="cta-text">
+                特に事前準備などはございません！<br>
+                どなたでもお気軽にご参加ください！
+            </div>
+            <a href="#" class="cta-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 6L10 14L22 2" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                セミナー申し込みはこちら
+            </a>
+        </div>
+
+        <!-- Courses Section -->
+        <div class="courses-section">
+            <div class="courses-intro">こんなことが学べる！</div>
+            <div class="section-header">
+                <div class="section-title">講座一覧</div>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-image">
+                            <img src="/images/course-1.png" alt="名刺デザイン講座">
+                        </div>
+                        <div class="course-title">
+                            2時間でかんたんに<br>
+                            名刺デザインを作成してみよう！
+                        </div>
+                        <div class="course-details">
+                            <div class="course-detail-row">
+                                <div class="course-detail-label">日時</div>
+                                <div class="course-detail-value">2023/12/10(日) 14:00〜15:30</div>
+                            </div>
+                            <div class="course-detail-row">
+                                <div class="course-detail-label">講師</div>
+                                <div class="course-detail-value">濱野 武</div>
+                            </div>
+                            <div class="course-detail-row">
+                                <div class="course-detail-label">費用</div>
+                                <div class="course-detail-value price">3,000円</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-description">
+                        たった2時間で名刺が作れる!?今まで名刺を作成するためには「専門的な知識やスキル」「時間」がかかることは当然のことでした。Adobe Expressを使うことで「専門的な知識やスキル不必要」「短時間」でサクサク作ることができます！
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-image">
+                            <img src="/images/course-2.png" alt="Web活用術講座">
+                        </div>
+                        <div class="course-title">
+                            集客のためのWeb活用術<br>
+                            〜SEOとユーザビリティのお話〜
+                        </div>
+                        <div class="course-details">
+                            <div class="course-detail-row">
+                                <div class="course-detail-label">日時</div>
+                                <div class="course-detail-value">2023/12/10(日) 14:00〜15:30</div>
+                            </div>
+                            <div class="course-detail-row">
+                                <div class="course-detail-label">講師</div>
+                                <div class="course-detail-value">濱野 武</div>
+                            </div>
+                            <div class="course-detail-row">
+                                <div class="course-detail-label">費用</div>
+                                <div class="course-detail-value price">3,000円</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="course-description">
+                        「ホームページを作ったけど、いまいち役に立っているのかわからない…」そんなあなたにホームページの活用術と、顧客とのコミュニケーションにつながる方法をお伝えしていきます。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Section -->
+        <div class="location-section">
+            <div class="section-header">
+                <div class="section-title">開催場所</div>
+                <div class="title-underline"></div>
+            </div>
+            <div class="location-image">
+                <img src="/images/location-image.png" alt="DESIGN CAMPUS コワーキングスペース">
+            </div>
+            <div class="location-info">
+                <div class="location-name">
+                    DESIGN CAMPUS<br>
+                    コワーキングスペース
+                </div>
+                <div class="location-address">
+                    〒192-0083<br>
+                    東京都八王子市三崎町4-11 トーネンビル5F
+                </div>
+                <div class="location-access">JR八王子駅北口を出て徒歩4分</div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <div class="faq-content">
+                <div class="section-header">
+                    <div class="section-title">よくあるご質問</div>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="faq-items">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-q-icon">Q</div>
+                            <div class="faq-q-text">参加するためにはどうすればいいですか？</div>
+                            <div class="faq-toggle"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-a-icon">A</div>
+                            <div class="faq-a-text">セミナーに参加希望の方は、オンラインフォームからお申し込みください。</div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-q-icon">Q</div>
+                            <div class="faq-q-text">セミナーに参加する際の服装はありますか？</div>
+                            <div class="faq-toggle"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-a-icon">A</div>
+                            <div class="faq-a-text">カジュアルな服装で構いません。ただし、セミナー会場が冷房で冷えることがあるため、軽く羽織るものを持参することをおすすめします。</div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <div class="faq-q-icon">Q</div>
+                            <div class="faq-q-text">予約をキャンセルしたい場合、どのような手続きが必要ですか？</div>
+                            <div class="faq-toggle"></div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="faq-a-icon">A</div>
+                            <div class="faq-a-text">キャンセルの場合、開催前日までにメールでinfo@exsample.comまでご連絡ください。当日のキャンセルについてはキャンセル料が発生しますのでご注意ください。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second CTA Section -->
+        <div class="cta-section second">
+            <div class="cta-text">
+                特に事前準備などはございません！<br>
+                どなたでもお気軽にご参加ください！
+            </div>
+            <a href="#" class="cta-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 6L10 14L22 2" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                セミナー申し込みはこちら
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-text">Copyright 2023 DESIGN CAMPUS</div>
+        </div>
+    </div>
+</body>
+</html>
