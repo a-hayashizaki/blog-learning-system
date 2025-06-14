@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     collection do
       post :generate
     end
-    resources :feedbacks, only: [:create, :edit, :update, :destroy]
+    resources :feedbacks, only: [ :create, :edit, :update, :destroy ]
   end
   root "articles#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

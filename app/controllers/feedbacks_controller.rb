@@ -1,14 +1,14 @@
 class FeedbacksController < ApplicationController
   before_action :set_article
-  before_action :set_feedback, only: [:edit, :update, :destroy]
+  before_action :set_feedback, only: [ :edit, :update, :destroy ]
 
   def create
     @feedback = @article.feedbacks.build(feedback_params)
-    
+
     if @feedback.save
-      redirect_to @article, notice: 'フィードバックが送信されました。'
+      redirect_to @article, notice: "フィードバックが送信されました。"
     else
-      redirect_to @article, alert: 'フィードバックの送信に失敗しました。'
+      redirect_to @article, alert: "フィードバックの送信に失敗しました。"
     end
   end
 
@@ -17,7 +17,7 @@ class FeedbacksController < ApplicationController
 
   def update
     if @feedback.update(feedback_params)
-      redirect_to @article, notice: 'フィードバックが更新されました。'
+      redirect_to @article, notice: "フィードバックが更新されました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class FeedbacksController < ApplicationController
 
   def destroy
     @feedback.destroy
-    redirect_to @article, notice: 'フィードバックが削除されました。'
+    redirect_to @article, notice: "フィードバックが削除されました。"
   end
 
   private
