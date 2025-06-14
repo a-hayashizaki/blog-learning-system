@@ -52,11 +52,15 @@ mcp-server-playwright --host 0.0.0.0 --port 9222
 ### Claude Code での MCP 設定
 
 1. Claude Code でMCPサーバーを追加：
+
+[公式の説明](https://docs.anthropic.com/ja/docs/claude-code/tutorials#mcp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B)
 ```bash
 claude mcp add --transport sse playwright http://host.docker.internal:9222/sse -s project
 ```
 
+
 2. またはマニュアル設定（`.mcp.json`）：
+
 ```json
 {
   "mcpServers": {
