@@ -24,7 +24,7 @@ rails server
 
 ## 🔧 MCP (Model Context Protocol) 設定
 
-このプロジェクトではPlaywright MCPを使用してブラウザ自動化機能を提供しています。
+このプロジェクトでは複数のMCPサーバーを使用して、ブラウザ自動化やデザインツール連携機能を提供しています。
 
 ### ローカル環境でのMCPサーバー起動
 
@@ -38,24 +38,40 @@ npm install -g @mcp-suite/mcp-server-playwright
 npx @mcp-suite/mcp-server-playwright --host 0.0.0.0 --port 9222
 ```
 
-#### 2. サーバーの起動
+#### 2. Figma Developer MCPサーバーのインストール
 
 ```bash
-# グローバルインストール後の起動
+# グローバルインストール
+npm install -g figma-developer-mcp@latest
+
+# 起動（別のポートで）
+figma-developer-mcp --port 9223
+```
+
+#### 3. サーバーの起動
+
+```bash
+# Playwright MCP（ブラウザ自動化）
 mcp-server-playwright --host 0.0.0.0 --port 9222
 
-# または、volta環境等でのコマンド実行
-# （このプロジェクトではvoltaが使用されているため、以下のコマンドが有効）
-mcp-server-playwright --host 0.0.0.0 --port 9222
+# Figma Developer MCP（デザインツール連携）
+figma-developer-mcp --port 9223
+
+# volta環境等でのコマンド実行
+# （このプロジェクトではvoltaが使用されているため、上記コマンドが有効）
 ```
 
 ### Claude Code での MCP 設定
 
-1. Claude Code でMCPサーバーを追加：
+1. Claude Code で複数のMCPサーバーを追加：
 
 [公式の説明](https://docs.anthropic.com/ja/docs/claude-code/tutorials#mcp%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%82%92%E7%90%86%E8%A7%A3%E3%81%99%E3%82%8B)
 ```bash
+# Playwright MCP（ブラウザ自動化）
 claude mcp add --transport sse playwright http://host.docker.internal:9222/sse -s project
+
+# Figma Developer MCP（デザインツール連携）
+claude mcp add --transport sse figma http://host.docker.internal:9223/sse -s project
 ```
 
 
@@ -67,6 +83,10 @@ claude mcp add --transport sse playwright http://host.docker.internal:9222/sse -
     "playwright": {
       "type": "sse",
       "url": "http://host.docker.internal:9222/sse"
+    },
+    "figma": {
+      "type": "sse",
+      "url": "http://host.docker.internal:9223/sse"
     }
   }
 }
@@ -74,9 +94,15 @@ claude mcp add --transport sse playwright http://host.docker.internal:9222/sse -
 
 ### MCP機能のテスト
 
+#### Playwright MCP
 1. Claude Desktop を開く
 2. 「Playwright MCP でグーグルを開いて」と入力
 3. ブラウザが自動で開かれることを確認
+
+#### Figma Developer MCP
+1. Claude Desktop を開く
+2. 「Figmaのデザインファイルを確認して」と入力
+3. Figmaとの連携機能が動作することを確認
 
 ## 📱 機能
 
@@ -84,6 +110,7 @@ claude mcp add --transport sse playwright http://host.docker.internal:9222/sse -
 - **学習分析**: 記事内容の分析と学習ポイントの抽出
 - **フィードバック**: ユーザーからのフィードバック収集
 - **ブラウザ自動化**: Playwright MCPによるWeb操作
+- **デザイン連携**: Figma Developer MCPによるデザインツール連携
 
 ## 🗄️ データベース
 

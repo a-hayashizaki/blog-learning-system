@@ -23,7 +23,14 @@
       "mcp__playwright__browser_click",
       "mcp__playwright__browser_type",
       "mcp__playwright__browser_select_option",
-      "mcp__playwright__browser_wait_for"
+      "mcp__playwright__browser_wait_for",
+      "mcp__figma__get_figma_data",
+      "mcp__figma__download_figma_images",
+      "Bash(chmod:*)",
+      "mcp__playwright__browser_install",
+      "Bash(python3:*)",
+      "Bash(gem install:*)",
+      "mcp__playwright__browser_press_key"
     ],
     "deny": []
   },

@@ -3,6 +3,10 @@
     "playwright": {
       "type": "sse",
       "url": "http://host.docker.internal:9222/sse"
+    },
+    "figma": {
+      "type": "sse",
+      "url": "http://host.docker.internal:9223/sse"
     }
   }
 }
