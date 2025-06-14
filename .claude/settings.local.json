@@ -12,7 +12,13 @@
       "Bash(curl:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(ruby --version)",
+      "Bash(rails --version)",
+      "Bash(bundle check:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp:*)",
+      "mcp__playwright__browser_navigate"
     ],
     "deny": []
   }

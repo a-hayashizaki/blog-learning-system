@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "type": "sse",
+      "url": "http://host.docker.internal:9222/sse"
+    }
+  }
+}
