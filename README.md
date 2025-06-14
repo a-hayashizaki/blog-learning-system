@@ -44,8 +44,6 @@ npx @mcp-suite/mcp-server-playwright --host 0.0.0.0 --port 9222
 # グローバルインストール
 npm install -g figma-developer-mcp@latest
 
-# 起動（別のポートで）
-figma-developer-mcp --port 9223
 ```
 
 #### 3. サーバーの起動
@@ -55,10 +53,11 @@ figma-developer-mcp --port 9223
 mcp-server-playwright --host 0.0.0.0 --port 9222
 
 # Figma Developer MCP（デザインツール連携）
-figma-developer-mcp --port 9223
+figma-developer-mcp -y --figma-api-key=${apikey} --port 9223
 
 # volta環境等でのコマンド実行
 # （このプロジェクトではvoltaが使用されているため、上記コマンドが有効）
+# volta なしの場合の例： npm mcp-server-playwright --host 0.0.0.0 --port 9222
 ```
 
 ### Claude Code での MCP 設定
@@ -95,12 +94,12 @@ claude mcp add --transport sse figma http://host.docker.internal:9223/sse -s pro
 ### MCP機能のテスト
 
 #### Playwright MCP
-1. Claude Desktop を開く
+1. Claude Code を開く
 2. 「Playwright MCP でグーグルを開いて」と入力
 3. ブラウザが自動で開かれることを確認
 
 #### Figma Developer MCP
-1. Claude Desktop を開く
+1. Claude Code を開く
 2. 「Figmaのデザインファイルを確認して」と入力
 3. Figmaとの連携機能が動作することを確認
 
